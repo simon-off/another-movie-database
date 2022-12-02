@@ -1,9 +1,10 @@
-import React from "react";
+import MovieListSection from "../components/MovieListSection";
 
 function Home() {
   return (
     <section>
-      <h2>Hello</h2>
+      <MovieListSection urlEndpoint="/movie/top_rated" title="Top rated" />
+      {/* <MovieListSection urlEndpoint="/movie/popular" title="Popular right now" /> */}
     </section>
   );
 }

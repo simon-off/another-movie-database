@@ -1,5 +1,5 @@
-function MovieCard() {
-  return <article className="movie-card">MovieCard</article>;
+function MovieCard({ movie }) {
+  return <article className="movie-card">{movie.title}</article>;
 }
 
 export default MovieCard;
