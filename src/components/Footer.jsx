@@ -1,7 +1,11 @@
+import "./Footer.scss";
+
 function Footer() {
   return (
     <footer className="footer">
-      <p>Heres my footer</p>
+      <div>
+        <p>Heres my footer</p>
+      </div>
     </footer>
   );
 }

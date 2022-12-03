@@ -1,3 +1,5 @@
+import "./MovieCard.scss";
+
 function MovieCard({ movie }) {
   return <article className="movie-card">{movie.title}</article>;
 }

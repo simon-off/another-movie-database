@@ -1,4 +1,38 @@
-// custom properties
 :root {
-  --max-width: 1280px;
+  // Sizes
+  --max-width: 1440px;
+
+  --prem: 1rem;
+  --frem: 1rem;
+
+  @media screen and (max-width: 800px) {
+    --prem: 0.75rem;
+    --frem: 0.875rem;
+  }
+  @media screen and (max-width: 500px) {
+    --prem: 0.5rem;
+    --frem: 0.75rem;
+  }
+
+  // Colors
+  --color-bg: hsl(200, 20%, 8%);
+  --color-bg-dark: hsl(200, 20%, 4%);
+  --color-bg-light: hsl(200, 20%, 12%);
+  --color-accent: hsl(200, 80%, 25%);
+  --color-accent-dark: hsl(200, 25%, 25%);
+  --color-text: hsl(0, 0%, 95%);
+  --color-text-transparent: hsla(0, 0%, 95%, 50%);
+
+  // Border
+  --border: 1px solid var(--color-accent-dark);
+
+  // Font size
+  --fs-m: var(--drem);
+  --fs-l: calc(var(--drem) * 1.5);
+  --fs-xl: calc(var(--drem) * 2);
+  --fs-xxl: calc(var(--drem) * 3);
+
+  // Transition
+  --time-fast: 100ms;
+  --time-medium: 200ms;
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import fetchData from "../helpers/fetch-data";
 import ErrorSection from "./ErrorSection";
 import MovieCard from "./MovieCard";
+import "./MovieListSection.scss";
 
 const dummyURL = "dummy-data.json";
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -24,9 +25,11 @@ function MovieSection(props) {
     return (
       <section className="movie-list-section">
         <h2>{props.title}</h2>
-        {movies.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie} />;
-        })}
+        <div className="movie-list">
+          {movies.map((movie) => {
+            return <MovieCard key={movie.id} movie={movie} />;
+          })}
+        </div>
       </section>
     );
   }

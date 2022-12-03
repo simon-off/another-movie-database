@@ -1,0 +1,10 @@
+.footer {
+  padding: var(--prem);
+  background-color: var(--color-bg-light);
+  margin-top: auto;
+  div {
+    border: 1px solid;
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+}
