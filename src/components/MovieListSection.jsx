@@ -1,79 +1,87 @@
+// Node modules
 import { useEffect, useRef, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 
+// Local files
 import fetchData from "../helpers/fetch-data";
-import ErrorSection from "./ErrorSection";
+import ErrorMessage from "./ErrorMessage";
+import Loading from "./Loading";
 import MovieCard from "./MovieCard";
 import "./MovieListSection.scss";
 
-const dummyURL = "dummy-data.json";
+// Global variables
+const dummyURL = "dummy-movies.json";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+// MovieSection Component
 function MovieSection(props) {
   const apiURL = `https://api.themoviedb.org/3${props.urlEndpoint}?api_key=${apiKey}`;
 
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
-  const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
   const [atSide, setAtSide] = useState("left");
   const movieListRef = useRef();
 
+  // fetch data on load
   useEffect(() => {
     fetchData(dummyURL)
       .then((data) => setMovies(data.results))
       .catch(setError);
   }, []);
 
-  useEffect(() => {
-    movieListRef.current.scrollTo(0, 0);
-  }, []);
-
-  const handleScroll = (direction) => {
-    const end = movies.length - 1;
+  // function to handle left and right scroll buttons
+  const handleScrollButtonsClick = (direction) => {
     const columns = window.getComputedStyle(movieListRef.current).getPropertyValue("--columns");
+    const columnWidth = movieListRef.current.scrollWidth / movies.length;
+    const currentColumn = Math.round(movieListRef.current.scrollLeft / columnWidth);
 
-    let targetScrollPosition = clamp(currentScrollPosition + columns * direction, 0, end);
+    let targetScrollPosition = clamp(
+      currentColumn + columns * direction,
+      0,
+      movies.length - columns
+    );
 
-    // TODO: Fix the bugs with setAtSide. You should check where the scroll is actually at!
-    if (targetScrollPosition > end - columns) {
-      targetScrollPosition = end - columns + 1;
-      setAtSide("right");
-    } else if (targetScrollPosition === 0) {
+    const targetCard = document.getElementById(props.id + targetScrollPosition);
+    targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+  };
+
+  const handleScrollEvent = (e) => {
+    if (e.target.scrollLeft < 50) {
       setAtSide("left");
+    } else if (e.target.scrollLeft > e.target.scrollLeftMax - 50) {
+      setAtSide("right");
     } else {
       setAtSide("middle");
     }
-
-    const targetCard = document.getElementById(props.id + targetScrollPosition.toString());
-    targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-    setCurrentScrollPosition(targetScrollPosition);
   };
 
-  if (error) return <ErrorSection error={error} />;
+  // Render error message if fetch fails
+  if (error) return <ErrorMessage error={error} title={props.title} />;
 
-  if (movies) {
+  // Successful fetch JSX
+  if (movies.length) {
     return (
       <section className="movie-list-section">
-        <h2>{props.title}</h2>
+        <h2 className="section-title">{props.title}</h2>
         <div className="movie-list-controls">
           <button
-            onClick={() => handleScroll(-1)}
+            onClick={() => handleScrollButtonsClick(-1)}
             className={`scroll-btn scroll-btn__left ${atSide === "left" ? "disabled" : ""}`}
           >
             <FaChevronLeft />
           </button>
           <button
-            onClick={() => handleScroll(1)}
+            onClick={() => handleScrollButtonsClick(1)}
             className={`scroll-btn scroll-btn__right ${atSide === "right" ? "disabled" : ""}`}
           >
             <FaChevronRight />
           </button>
-          <div ref={movieListRef} className="movie-list">
+          <div ref={movieListRef} onScroll={handleScrollEvent} className="movie-list">
             {movies.map((movie, index) => {
               return <MovieCard key={movie.id} movie={movie} index={index} sectionId={props.id} />;
             })}
@@ -82,6 +90,9 @@ function MovieSection(props) {
       </section>
     );
   }
+
+  // Loading...
+  return <Loading />;
 }
 
 export default MovieSection;

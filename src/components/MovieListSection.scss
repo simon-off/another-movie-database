@@ -6,10 +6,12 @@
 
 .movie-list-controls {
   position: relative;
+  overflow: hidden;
 }
 
 .scroll-btn {
   background-color: rgba(0 0 0 / 0.5);
+
   border: none;
   position: absolute;
   top: 0;
@@ -21,7 +23,6 @@
   &.disabled {
     opacity: 0.5;
     background-color: rgba(0 0 0 / 00);
-    // animation: hide var(--time-medium) forwards;
   }
   &:hover {
     background-color: rgba(0 0 0 / 0.75);
@@ -31,17 +32,13 @@
   }
   &__left {
     left: 0;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
   &__right {
     right: 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 }
-
-// @keyframes hide {
-//   to {
-//     visibility: hidden;
-//   }
-// }
 
 .movie-list {
   --columns: 6;
@@ -63,7 +60,7 @@
 
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
 
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */

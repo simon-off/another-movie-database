@@ -28,12 +28,13 @@
 
   // Border
   --border: 1px solid var(--color-accent-dark);
+  --border-radius: calc(var(--frem) / 2);
 
   // Font size
   --fs-s: 0.75rem;
   --fs-m: 1rem;
   --fs-l: 1.5rem;
-  --fs-xl: calc(var(--frem) * 3);
+  --fs-xl: calc(var(--frem) * 2);
 
   // Transition
   --time-fast: 100ms;
