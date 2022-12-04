@@ -1,5 +1,40 @@
-// .movie-card {
-//   &:nth-child(5n) {
-//     scroll-snap-align: end;
-//   }
-// }
+.movie-card {
+  transition: var(--time-fast);
+  scroll-snap-align: start;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  position: relative;
+  // box-shadow: 0 10px 1rem black;
+
+  &::after {
+    transition: var(--time-slow);
+    content: "";
+    position: absolute;
+    inset: 0;
+    // background-color: red;
+    // box-shadow: inset 0 0 50px rgb(245, 0, 0);
+  }
+  &:hover::after {
+    box-shadow: inset 0 0 2rem rgba(0 0 0 / 0.75);
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+  &__content {
+    background-color: var(--color-bg-dark);
+    height: 100%;
+    h3 {
+      font-weight: 400;
+      font-size: var(--frem);
+      padding: 1em;
+    }
+  }
+}
+
+.img-container {
+  overflow: hidden;
+  img {
+    transition: var(--time-slow) ease-in-out;
+  }
+}

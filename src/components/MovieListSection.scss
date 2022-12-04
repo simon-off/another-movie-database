@@ -1,13 +1,73 @@
-.movie-list {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 19%;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+.movie-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prem);
 }
 
-.movie-card {
-  &:nth-child(1n) {
-    scroll-snap-align: center;
+.movie-list-controls {
+  position: relative;
+}
+
+.scroll-btn {
+  background-color: rgba(0 0 0 / 0.5);
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  font-size: calc(var(--prem) * 2);
+  padding: 0.5em;
+  z-index: 2;
+  transition: var(--time-medium);
+  &.disabled {
+    opacity: 0.5;
+    background-color: rgba(0 0 0 / 00);
+    // animation: hide var(--time-medium) forwards;
+  }
+  &:hover {
+    background-color: rgba(0 0 0 / 0.75);
+  }
+  &:active {
+    background-color: rgba(0 0 0 / 1);
+  }
+  &__left {
+    left: 0;
+  }
+  &__right {
+    right: 0;
+  }
+}
+
+// @keyframes hide {
+//   to {
+//     visibility: hidden;
+//   }
+// }
+
+.movie-list {
+  --columns: 6;
+  @media screen and (max-width: 1200px) {
+    --columns: 4;
+  }
+  @media screen and (max-width: 900px) {
+    --columns: 3;
+  }
+  @media screen and (max-width: 600px) {
+    --columns: 2;
+  }
+  --gap: var(--prem);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% / var(--columns) - var(--gap) + (var(--gap) / var(--columns)));
+  gap: var(--gap);
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  border-radius: 0.25rem;
+
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 }

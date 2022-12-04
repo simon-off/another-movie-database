@@ -1,5 +1,9 @@
 @use "./sass-partials";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-bg);
 }
@@ -16,12 +20,11 @@ body {
 
 .main {
   padding: var(--prem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--prem);
   section {
     max-width: var(--max-width);
     margin-inline: auto;
   }
-}
-
-.movie-card {
-  border: var(--border);
 }

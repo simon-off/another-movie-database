@@ -1,15 +1,18 @@
 :root {
   // Sizes
   --max-width: 1440px;
+  --prem: 1.25rem;
+  --frem: 1.125rem;
 
-  --prem: 1rem;
-  --frem: 1rem;
-
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    --prem: 1rem;
+    --frem: 1rem;
+  }
+  @media screen and (max-width: 900px) {
     --prem: 0.75rem;
     --frem: 0.875rem;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     --prem: 0.5rem;
     --frem: 0.75rem;
   }
@@ -27,12 +30,13 @@
   --border: 1px solid var(--color-accent-dark);
 
   // Font size
-  --fs-m: var(--drem);
-  --fs-l: calc(var(--drem) * 1.5);
-  --fs-xl: calc(var(--drem) * 2);
-  --fs-xxl: calc(var(--drem) * 3);
+  --fs-s: 0.75rem;
+  --fs-m: 1rem;
+  --fs-l: 1.5rem;
+  --fs-xl: calc(var(--frem) * 3);
 
   // Transition
   --time-fast: 100ms;
   --time-medium: 200ms;
+  --time-slow: 300ms;
 }

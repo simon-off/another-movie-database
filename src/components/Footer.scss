@@ -1,10 +1,22 @@
 .footer {
-  padding: var(--prem);
+  padding-inline: var(--prem);
+  padding-block: calc(var(--prem) * 2);
   background-color: var(--color-bg-light);
   margin-top: auto;
   div {
-    border: 1px solid;
     max-width: var(--max-width);
     margin-inline: auto;
+    display: flex;
+    gap: calc(var(--prem) / 2);
+    flex-direction: column;
+    text-align: center;
   }
+  img {
+    height: var(--fs-s);
+  }
+}
+
+.disclaimer {
+  color: var(--color-text-transparent);
+  font-size: var(--fs-s);
 }
