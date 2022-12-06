@@ -72,14 +72,18 @@ function MovieSection(props) {
           <button
             onClick={() => handleScrollButtonsClick(-1)}
             className={`scroll-btn scroll-btn__left ${atSide === "left" ? "disabled" : ""}`}
+            aria-label="Scroll movie list left"
           >
-            <FaChevronLeft />
+            {/* Purely decorative icon. Buttons are labeled */}
+            <FaChevronLeft aria-hidden="true" />{" "}
           </button>
           <button
             onClick={() => handleScrollButtonsClick(1)}
             className={`scroll-btn scroll-btn__right ${atSide === "right" ? "disabled" : ""}`}
+            aria-label="Scroll movie list right"
           >
-            <FaChevronRight />
+            {/* Purely decorative icon. Buttons are labeled */}
+            <FaChevronRight aria-hidden="true" />
           </button>
           <div ref={movieListRef} onScroll={handleScrollEvent} className="movie-list">
             {movies.map((movie, index) => {

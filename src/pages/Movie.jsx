@@ -1,12 +1,14 @@
+// Node modules
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+// Local files
 import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading";
-
 import fetchData from "../helpers/fetch-data";
 import "./Movie.scss";
 
-const dummyURL = "/dummy-movies.json";
+const dummyURL = "/dummy-movie.json";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function Movie() {
@@ -18,7 +20,7 @@ function Movie() {
 
   // fetch data on load
   useEffect(() => {
-    fetchData(apiURL).then(setMovie).catch(setError);
+    fetchData(dummyURL).then(setMovie).catch(setError);
   }, []);
 
   // Render error message if fetch fails
