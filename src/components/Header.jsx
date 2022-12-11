@@ -1,20 +1,21 @@
 import { NavLink } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import "./Header.scss";
-
-const handleSearchSubmit = (e) => {
-  e.preventDefault();
-};
+import { useState } from "react";
 
 function Navbar() {
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <header className="header">
       <nav>
         <NavLink to="/" className="logo">
           AMDb
         </NavLink>
-        <form onSubmit={handleSearchSubmit} className="search-form">
+        <form onSubmit={(e) => e.preventDefault()} className="search-form">
           <input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
             type="text"
             name="search"
             id="search"

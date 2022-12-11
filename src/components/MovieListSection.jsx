@@ -4,7 +4,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 
 // Local files
-import fetchData from "../helpers/fetch-data";
+import useFetch from "../hooks/useFetch";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import MovieCard from "./MovieCard";
@@ -18,38 +18,31 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-// MovieSection Component
-function MovieSection(props) {
+// MovieListSection Component
+function MovieListSection(props) {
   const apiURL = `https://api.themoviedb.org/3${props.urlEndpoint}?api_key=${apiKey}`;
 
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
+  const { data: movies, error, loading } = useFetch(dummyURL);
   const [atSide, setAtSide] = useState("left");
   const movieListRef = useRef();
-
-  // fetch data on load
-  useEffect(() => {
-    fetchData(dummyURL)
-      .then((data) => setMovies(data.results))
-      .catch(setError);
-  }, []);
 
   // function to handle left and right scroll buttons
   const handleScrollButtonsClick = (direction) => {
     const columns = window.getComputedStyle(movieListRef.current).getPropertyValue("--columns");
-    const columnWidth = movieListRef.current.scrollWidth / movies.length;
+    const columnWidth = movieListRef.current.scrollWidth / movies.results.length;
     const currentColumn = Math.round(movieListRef.current.scrollLeft / columnWidth);
 
     let targetScrollPosition = clamp(
       currentColumn + columns * direction,
       0,
-      movies.length - columns
+      movies.results.length - columns
     );
 
     const targetCard = document.getElementById(props.id + targetScrollPosition);
     targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   };
 
+  // function to check if at edge of scroll box
   const handleScrollEvent = (e) => {
     if (e.target.scrollLeft < 50) {
       setAtSide("left");
@@ -60,11 +53,14 @@ function MovieSection(props) {
     }
   };
 
+  // Render loading...
+  if (loading) return <Loading />;
+
   // Render error message if fetch fails
   if (error) return <ErrorMessage error={error} title={props.title} />;
 
-  // Successful fetch JSX
-  if (movies.length) {
+  // Render if successful fetch
+  if (movies) {
     return (
       <section className="movie-list-section">
         <h2 className="section-title">{props.title}</h2>
@@ -86,7 +82,7 @@ function MovieSection(props) {
             <FaChevronRight aria-hidden="true" />
           </button>
           <div ref={movieListRef} onScroll={handleScrollEvent} className="movie-list">
-            {movies.map((movie, index) => {
+            {movies.results.map((movie, index) => {
               return <MovieCard key={movie.id} movie={movie} index={index} sectionId={props.id} />;
             })}
           </div>
@@ -94,9 +90,6 @@ function MovieSection(props) {
       </section>
     );
   }
-
-  // Loading...
-  return <Loading />;
 }
 
-export default MovieSection;
+export default MovieListSection;

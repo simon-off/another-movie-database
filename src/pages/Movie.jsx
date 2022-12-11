@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Local files
+import useFetch from "../hooks/useFetch";
 import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading";
-import fetchData from "../helpers/fetch-data";
 import "./Movie.scss";
 
 const dummyURL = "/dummy-movie.json";
@@ -13,20 +13,17 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 function Movie() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(null);
-
   const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
-  // fetch data on load
-  useEffect(() => {
-    fetchData(dummyURL).then(setMovie).catch(setError);
-  }, []);
+  const { data: movie, error, loading } = useFetch(dummyURL);
+
+  // Render loading...
+  if (loading) return <Loading />;
 
   // Render error message if fetch fails
   if (error) return <ErrorMessage error={error} title={`movie ${id}`} />;
 
-  // Successful fetch JSX
+  // Render if successful fetch
   if (movie) {
     return (
       <section className="movie-section">
@@ -34,9 +31,6 @@ function Movie() {
       </section>
     );
   }
-
-  // Loading...
-  return <Loading />;
 }
 
 export default Movie;

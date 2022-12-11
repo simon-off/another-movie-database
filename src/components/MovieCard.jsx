@@ -1,4 +1,3 @@
-import { startTransition } from "react";
 import { Link } from "react-router-dom";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "./MovieCard.scss";
@@ -44,7 +43,7 @@ function MovieCard({ movie, index, sectionId }) {
             {drawStars(movie.vote_average)}
             <span aria-label="Average movie rating">{movie.vote_average}</span>
           </span>
-          <h3 id={sectionId + movie.id}>{movie.title}</h3>
+          <p id={sectionId + movie.id}>{movie.title}</p>
         </div>
       </div>
     </Link>
