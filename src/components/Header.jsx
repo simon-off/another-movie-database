@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import "./Header.scss";
-import { useState } from "react";
+import SearchResults from "./SearchResults";
 
 function Navbar() {
   const [searchValue, setSearchValue] = useState("");
@@ -29,6 +30,7 @@ function Navbar() {
           </button>
         </form>
       </nav>
+      <SearchResults searchValue={searchValue} />
     </header>
   );
 }

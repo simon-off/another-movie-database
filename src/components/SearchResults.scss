@@ -1,0 +1,23 @@
+.search-results {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  width: 100%;
+  max-width: calc(var(--max-width) - (var(--prem) * 4));
+  z-index: 3;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  background-color: var(--color-bg-light-transparent);
+  box-shadow: 0 0 50px black;
+  clip-path: polygon(-1000vw 0, 1000vw 0, 1000vw 1000vh, -1000vw 1000vh);
+  padding: var(--prem);
+  box-shadow: 0 0 0 200vmax rgba(0 0 0 / 0.5);
+  transition: var(--time-medium) ease-in-out;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}
