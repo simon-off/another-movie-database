@@ -1,4 +1,5 @@
 // Node modules
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // Local files
@@ -16,6 +17,10 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
 
   const { data: movie, error, loading } = useFetch(dummyURL);
 
+  useEffect(() => {
+    if (movie) setRecentlyViewed([...recentlyViewed, { movie: movie }]);
+  }, [movie]);
+
   // Render loading...
   if (loading) return <Loading />;
 
@@ -24,7 +29,6 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
 
   // Render if successful fetch
   if (movie) {
-    setRecentlyViewed([...recentlyViewed, { movie: movie }]);
     return (
       <section className="movie-section">
         <h1>{movie.title}</h1>

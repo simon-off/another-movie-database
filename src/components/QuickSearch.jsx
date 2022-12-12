@@ -17,7 +17,7 @@ function SearchResults({ searchValue, setSearchValue }) {
 
   if (data) {
     const sortedMovies = data.results.sort((a, b) => b.popularity - a.popularity);
-    splicedMovies = data.results.length >= 5 ? data.results.slice(0, 6) : data.results;
+    splicedMovies = sortedMovies.length >= 5 ? sortedMovies.slice(0, 6) : sortedMovies;
   }
 
   return (
