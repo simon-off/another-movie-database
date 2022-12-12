@@ -10,7 +10,7 @@ import "./Movie.scss";
 const dummyURL = "/dummy-movie.json";
 const apiKey = import.meta.env.VITE_API_KEY;
 
-function Movie() {
+function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { id } = useParams();
   const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
@@ -24,6 +24,7 @@ function Movie() {
 
   // Render if successful fetch
   if (movie) {
+    setRecentlyViewed([...recentlyViewed, { movie: movie }]);
     return (
       <section className="movie-section">
         <h1>{movie.title}</h1>

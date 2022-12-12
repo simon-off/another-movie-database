@@ -1,6 +1,6 @@
 import MovieListSection from "../components/MovieListSection";
 
-function Home() {
+function Home({ recentlyViewed }) {
   return (
     <>
       <MovieListSection urlEndpoint="/movie/top_rated" title="Top rated" id="top" />

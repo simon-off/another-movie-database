@@ -1,5 +1,5 @@
 // Node modules
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 

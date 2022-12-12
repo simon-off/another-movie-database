@@ -6,18 +6,26 @@ import Movie from "./pages/Movie";
 import ErrorPage from "./pages/ErrorPage";
 
 // Components
+import useLocalStorage from "./hooks/useLocalStorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.scss";
 
 function App() {
+  const [recentlyViewed, setRecentlyViewed] = useLocalStorage([], "recentlyViewed");
+
   return (
     <div className="app">
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movie/:id" element={<Movie />} />
+          <Route path="/" element={<Home recentlyViewed={recentlyViewed} />} />
+          <Route
+            path="/movie/:id"
+            element={
+              <Movie recentlyViewed={recentlyViewed} setRecentlyViewed={setRecentlyViewed} />
+            }
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
