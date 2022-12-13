@@ -43,7 +43,7 @@ function MovieCard({ movie, index, sectionId }) {
             {drawStars(movie.vote_average)}
             <span aria-label="Average movie rating">{movie.vote_average}</span>
           </span>
-          <p tabIndex="-1" id={sectionId + movie.id}>
+          <p tabIndex="-1" id={"p" + sectionId + movie.id}>
             {movie.title}
           </p>
         </div>
