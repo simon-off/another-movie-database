@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   gap: calc(var(--prem) * 2);
   section {
+    width: 100%;
     max-width: var(--max-width);
     margin-inline: auto;
   }

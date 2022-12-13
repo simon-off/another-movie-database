@@ -20,7 +20,10 @@ function App() {
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={<Home recentlyViewed={recentlyViewed} />} />
+          <Route
+            path="/"
+            element={<Home recentlyViewed={recentlyViewed} setRecentlyViewed={setRecentlyViewed} />}
+          />
           <Route
             path="/movie/:id"
             element={

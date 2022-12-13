@@ -15,17 +15,22 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { id } = useParams();
   const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
-  const { data: movie, error, loading } = useFetch(dummyURL);
+  const { data: movie, error, loading } = useFetch(apiURL);
 
   useEffect(() => {
     if (movie) {
+      const newMovie = {
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        vote_average: movie.vote_average,
+      };
+
       if (!recentlyViewed.some((viewedMovie) => viewedMovie.id === movie.id)) {
-        setRecentlyViewed(
-          [
-            { id: movie.id, title: movie.title, poster_path: movie.poster_path },
-            ...recentlyViewed,
-          ].slice(0, 11)
-        );
+        setRecentlyViewed([newMovie, ...recentlyViewed].slice(0, 11));
+      } else {
+        const filteredMovies = recentlyViewed.filter((filtered) => filtered.id !== movie.id);
+        setRecentlyViewed([newMovie, ...filteredMovies].slice(0, 11));
       }
     }
   }, [movie]);
