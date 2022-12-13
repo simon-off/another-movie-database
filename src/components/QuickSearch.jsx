@@ -13,11 +13,11 @@ function SearchResults({ searchValue, setSearchValue }) {
 
   // const { data, error, loading } = useSearchFetch(apiURL, searchValue);
   const { data, error, loading } = useFetch(dummyURL);
-  let splicedMovies = [];
+  let slicedMovies = [];
 
   if (data) {
     const sortedMovies = data.results.sort((a, b) => b.popularity - a.popularity);
-    splicedMovies = sortedMovies.length >= 5 ? sortedMovies.slice(0, 6) : sortedMovies;
+    slicedMovies = sortedMovies.length >= 5 ? sortedMovies.slice(0, 6) : sortedMovies;
   }
 
   return (
@@ -26,9 +26,9 @@ function SearchResults({ searchValue, setSearchValue }) {
       onClick={() => setSearchValue("")}
     >
       {error ? <ErrorMessage error={error} title={searchValue} /> : null}
-      {splicedMovies.length > 0 ? (
+      {slicedMovies.length > 0 ? (
         <div>
-          {splicedMovies.map((movie) => (
+          {slicedMovies.map((movie) => (
             <QuickSearchResult key={movie.id} movie={movie} />
           ))}
           <p className="p-half-prem">See all results for "{searchValue}"</p>

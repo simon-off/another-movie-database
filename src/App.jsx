@@ -10,9 +10,10 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.scss";
+// import { useState } from "react";
 
 function App() {
-  const [recentlyViewed, setRecentlyViewed] = useLocalStorage([], "recentlyViewed");
+  const [recentlyViewed, setRecentlyViewed] = useLocalStorage([], "recent");
 
   return (
     <div className="app">

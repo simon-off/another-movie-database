@@ -18,7 +18,16 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { data: movie, error, loading } = useFetch(dummyURL);
 
   useEffect(() => {
-    if (movie) setRecentlyViewed([...recentlyViewed, { movie: movie }]);
+    if (movie) {
+      if (!recentlyViewed.some((viewedMovie) => viewedMovie.id === movie.id)) {
+        setRecentlyViewed(
+          [
+            { id: movie.id, title: movie.title, poster_path: movie.poster_path },
+            ...recentlyViewed,
+          ].slice(0, 11)
+        );
+      }
+    }
   }, [movie]);
 
   // Render loading...
