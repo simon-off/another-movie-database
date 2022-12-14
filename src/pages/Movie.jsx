@@ -15,7 +15,7 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { id } = useParams();
   const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
-  const { data: movie, error, loading } = useFetch(apiURL);
+  const { data: movie, error, loading } = useFetch(dummyURL);
 
   useEffect(() => {
     if (movie) {
@@ -43,9 +43,20 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
 
   // Render if successful fetch
   if (movie) {
+    console.log(movie);
     return (
       <section className="movie-section">
-        <h1>{movie.title}</h1>
+        <div>
+          <h2>{movie.title || null}</h2>
+          <p>{movie.runtime || null} minutes</p>
+          <p>{movie.tagline || null}</p>
+          <p>{movie.overview || null}</p>
+          <ul>
+            {movie.genres
+              ? movie.genres.map((genre) => <li key={genre.key}>{genre.name}</li>)
+              : null}
+          </ul>
+        </div>
       </section>
     );
   }

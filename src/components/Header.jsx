@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import "./Header.scss";
 import QuickSearch from "./QuickSearch";
+import { useRef } from "react";
 
 function Navbar() {
   const [searchValue, setSearchValue] = useState("");
+  const [searchInputFocused, serSearchInputFocused] = useState(false);
 
   return (
     <header className="header">
@@ -17,6 +19,8 @@ function Navbar() {
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
+            onFocus={() => serSearchInputFocused(true)}
+            onBlur={() => serSearchInputFocused(false)}
             type="text"
             name="search"
             id="search"
@@ -30,7 +34,11 @@ function Navbar() {
           </button>
         </form>
       </nav>
-      <QuickSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <QuickSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        searchInputFocused={searchInputFocused}
+      />
     </header>
   );
 }

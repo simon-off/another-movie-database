@@ -1,7 +1,10 @@
 @import "@fontsource/readex-pro";
+@import "@fontsource/urbanist/500";
+@import "@fontsource/urbanist/700";
+@import "@fontsource/urbanist/900";
 
 * {
-  font-family: "Readex Pro", sans-serif;
+  font-family: "Urbanist", sans-serif;
   color: var(--color-text);
 }
 
@@ -19,4 +22,11 @@ h2 {
 
 .section-title {
   font-size: var(--fs-xl);
+
+  font-weight: 700;
+  color: var(--color-accent-light);
+}
+
+img {
+  color: black;
 }

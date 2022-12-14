@@ -18,13 +18,14 @@
   }
 
   // Colors
-  --color-bg: hsl(200, 20%, 8%);
-  --color-bg-dark: hsl(200, 20%, 4%);
-  --color-bg-light: hsl(200, 20%, 12%);
-  --color-bg-light-transparent: hsla(200, 20%, 12%, 99%);
+  --color-bg: hsl(200, 45%, 10%);
+  --color-bg-dark: hsl(200, 30%, 4%);
+  --color-bg-light: hsl(200, 45%, 14%);
+  --color-bg-light-transparent: hsla(200, 40%, 12%, 99%);
   --color-accent: hsl(200, 80%, 25%);
   --color-accent-dark: hsl(200, 25%, 25%);
-  --color-text: hsl(0, 0%, 95%);
+  --color-accent-light: hsl(201, 14%, 81%);
+  --color-text: hsl(0, 50%, 95%);
   --color-text-transparent: hsla(0, 0%, 95%, 50%);
 
   // Border
@@ -35,7 +36,7 @@
   --fs-s: 0.75rem;
   --fs-m: 1rem;
   --fs-l: 1.5rem;
-  --fs-xl: calc(var(--frem) * 2);
+  --fs-xl: calc(var(--frem) * 1.5);
 
   // Transition
   --time-fast: 100ms;

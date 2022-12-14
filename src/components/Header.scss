@@ -10,11 +10,18 @@
     gap: var(--prem);
   }
   .logo {
+    --letter-spacing: 8px;
+
     font-size: 1.5rem;
     font-weight: 900;
-    background-color: var(--color-accent);
-    padding: 0.125em 0.25em;
-    border-radius: var(--border-radius);
+    letter-spacing: var(--letter-spacing);
+
+    background-color: rgb(7, 34, 49);
+    background-image: linear-gradient(45deg, #00ffff1d, #05b6e23a);
+    padding: 0.125rem;
+    padding-left: calc(0.125em + var(--letter-spacing));
+    border-radius: var(--border-radius) 2px var(--border-radius) 2px;
+    border: 1px solid rgb(37, 145, 172);
     outline: 1px solid rgba(0 0 0 / 0);
     &:focus-visible {
       outline: 1px solid black;
