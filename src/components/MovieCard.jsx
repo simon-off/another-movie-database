@@ -45,8 +45,10 @@ function MovieCard({ movie, index, sectionId }) {
         </div>
         <div className="info-container">
           <span className="info-container__stars">
-            {drawStars(movie.vote_average.toFixed(1))}
-            <span aria-label="Average movie rating">{movie.vote_average.toFixed(1)}</span>
+            {drawStars(movie.vote_average ? movie.vote_average.toFixed(1) : 0)}
+            <span aria-label="Average movie rating">
+              {movie.vote_average ? movie.vote_average.toFixed(1) : 0}
+            </span>
           </span>
           <p tabIndex="-1" id={"p" + sectionId + movie.id}>
             {movie.title}
