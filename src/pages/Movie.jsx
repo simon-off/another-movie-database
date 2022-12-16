@@ -1,5 +1,5 @@
 // Node modules
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Local files
@@ -14,8 +14,9 @@ const apiKey = import.meta.env.VITE_API_KEY;
 function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { id } = useParams();
   const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+  const [backdropLoaded, setBackdropLoaded] = useState(false);
 
-  const { data: movie, error, loading } = useFetch(dummyURL);
+  const { data: movie, error, loading } = useFetch(apiURL);
 
   useEffect(() => {
     if (movie) {
@@ -43,18 +44,32 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
 
   // Render if successful fetch
   if (movie) {
-    console.log(movie);
     return (
       <section className="movie-section">
-        <div>
+        <div className="movie-backdrop-container">
+          <img
+            className={backdropLoaded ? "loaded" : ""}
+            onLoad={() => {
+              setBackdropLoaded(true);
+              console.log("hello");
+            }}
+            src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
+            alt={movie.title}
+          />
+        </div>
+        <div className="movie-poster-container">
+          <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+        </div>
+        <div className="movie-info-container">
           <h2>{movie.title || null}</h2>
           <p>{movie.runtime || null} minutes</p>
+          <p>Release date: {movie.release_date || null}</p>
           <p>{movie.tagline || null}</p>
           <p>{movie.overview || null}</p>
           <ul>
-            {movie.genres
-              ? movie.genres.map((genre) => <li key={genre.key}>{genre.name}</li>)
-              : null}
+            {movie.genres?.map((genre) => (
+              <li key={genre.key}>{genre.name}</li>
+            ))}
           </ul>
         </div>
       </section>

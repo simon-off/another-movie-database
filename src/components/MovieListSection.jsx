@@ -65,7 +65,7 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
       <section className="movie-list-section">
         <h2 className="section-title">{title}</h2>
         <div className="movie-list-controls">
-          {movies.results.length > columns ? (
+          {movies && movies.results.length > columns ? (
             <>
               <button
                 onClick={() => handleScrollButtonsClick(-1)}
