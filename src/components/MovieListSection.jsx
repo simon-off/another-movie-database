@@ -29,6 +29,7 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
 
   // function to handle left and right scroll buttons
   const handleScrollButtonsClick = (direction) => {
+    setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
     const columnWidth = movieListRef.current.scrollWidth / movies.results.length;
     const currentColumn = Math.round(movieListRef.current.scrollLeft / columnWidth);
 
