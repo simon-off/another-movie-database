@@ -18,12 +18,8 @@ body {
   backdrop-filter: blur(16px);
 }
 
-#root {
-  height: 100%;
-}
-
 .app {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -34,6 +30,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: calc(var(--prem) * 2);
+  position: relative;
+  flex-grow: 1;
+
   section {
     width: 100%;
     max-width: var(--max-width);

@@ -7,6 +7,8 @@ import useFetch from "../hooks/useFetch";
 import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading";
 import "./Movie.scss";
+import drawStars from "../helpers/drawStars";
+import MovieListSection from "../components/MovieListSection";
 
 const dummyURL = "/dummy-movie.json";
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -45,34 +47,65 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
   // Render if successful fetch
   if (movie) {
     return (
-      <section className="movie-section">
-        <div className="movie-backdrop-container">
-          <img
-            className={backdropLoaded ? "loaded" : ""}
-            onLoad={() => {
-              setBackdropLoaded(true);
-              console.log("hello");
-            }}
-            src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
-            alt={movie.title}
-          />
-        </div>
-        <div className="movie-poster-container">
-          <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
-        </div>
-        <div className="movie-info-container">
-          <h2>{movie.title || null}</h2>
-          <p>{movie.runtime || null} minutes</p>
-          <p>Release date: {movie.release_date || null}</p>
-          <p>{movie.tagline || null}</p>
-          <p>{movie.overview || null}</p>
-          <ul>
-            {movie.genres?.map((genre) => (
-              <li key={genre.key}>{genre.name}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <>
+        <section className="movie-section">
+          <div className="movie-backdrop-container">
+            <img
+              className={backdropLoaded ? "loaded" : ""}
+              onLoad={() => {
+                setBackdropLoaded(true);
+              }}
+              src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
+              alt={movie.title}
+            />
+          </div>
+          <div className="movie-section-content">
+            <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+            <div className="movie-info">
+              <h2>{movie.title || null}</h2>
+              <div className="movie-info__stars">
+                {drawStars(movie.vote_average ? movie.vote_average.toFixed(1) : 0)}
+                <span aria-label="Average movie rating">
+                  {movie.vote_average ? movie.vote_average.toFixed(1) : 0}
+                </span>
+              </div>
+              <div>
+                <p>
+                  Runtime: <b>{movie.runtime || null}</b> minutes
+                </p>
+                <p>
+                  Release date: <b>{movie.release_date || null}</b>
+                </p>
+              </div>
+              <ul>
+                {movie.genres?.map((genre) => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>
+              <p className="tagline">
+                <span>tagline:</span>
+                <i>- {movie.tagline || null}</i>
+              </p>
+            </div>
+            <div className="movie-description">
+              <h3>Overview</h3>
+              <p>{movie.overview || null}</p>
+            </div>
+          </div>
+        </section>
+        {recentlyViewed.length > 0 ? (
+          <>
+            <MovieListSection
+              movies={{ results: recentlyViewed }}
+              title="Recently viewed"
+              sectionId="recent"
+            />
+            <button className="btn z-index-1" onClick={() => setRecentlyViewed([])}>
+              Clear recently viewed movies
+            </button>
+          </>
+        ) : null}
+      </>
     );
   }
 }

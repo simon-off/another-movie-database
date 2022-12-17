@@ -5,7 +5,6 @@ import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 
 // Local files
-import useFetch from "../hooks/useFetch";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import MovieCard from "./MovieCard";
@@ -23,6 +22,7 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
 
   useEffect(() => {
     if (movieListRef.current) {
+      movieListRef.current.scrollLeft = 0;
       setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
     }
   }, [movieListRef]);
@@ -43,8 +43,14 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
     targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   };
 
+  window.addEventListener("resize", () => {
+    setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
+  });
+
   // function to check if at edge of scroll box
   const handleScrollEvent = (e) => {
+    setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
+
     if (e.target.scrollLeft < 50) {
       setAtSide("left");
     } else if (e.target.scrollLeft > e.target.scrollLeftMax - 50) {

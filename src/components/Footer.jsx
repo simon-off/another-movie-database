@@ -13,6 +13,9 @@ function Footer() {
           </a>{" "}
           but is not endorsed or certified by TMDB.
         </p>
+        <span className="disclaimer">
+          made by: <a href="https://github.com/simon-off">simonoff</a>
+        </span>
       </div>
     </footer>
   );

@@ -1,8 +1,9 @@
 .footer {
   padding-inline: var(--prem);
-  padding-block: calc(var(--prem) * 2);
+  padding-block: calc(var(--prem) * 1);
   background-color: var(--color-bg-light);
   margin-top: auto;
+  border-top: var(--border);
   div {
     max-width: var(--max-width);
     margin-inline: auto;
