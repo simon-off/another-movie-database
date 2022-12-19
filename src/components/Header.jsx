@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import "./Header.scss";
 import QuickSearch from "./QuickSearch";
-import { useRef } from "react";
+import "./Header.scss";
 
 function Navbar() {
   const [searchValue, setSearchValue] = useState("");
-  const [searchInputFocused, serSearchInputFocused] = useState(false);
+  const [searchInputFocused, setSearchInputFocused] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    if (searchValue) {
+      e.preventDefault();
+      setSearchInputFocused(false);
+      navigate(`/search/${searchValue}`);
+    }
+  };
 
   return (
     <header className="header">
@@ -15,12 +23,15 @@ function Navbar() {
         <NavLink to="/" className="logo">
           AMDb
         </NavLink>
-        <form onSubmit={(e) => e.preventDefault()} className="search-form">
+        <form onSubmit={handleSubmit} className="search-form">
           <input
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onFocus={() => serSearchInputFocused(true)}
-            onBlur={() => serSearchInputFocused(false)}
+            onChange={(e) => {
+              setSearchInputFocused(true);
+              setSearchValue(e.target.value);
+            }}
+            onFocus={() => setSearchInputFocused(true)}
+            onBlur={() => setSearchInputFocused(false)}
             type="text"
             name="search"
             id="search"
@@ -30,7 +41,7 @@ function Navbar() {
             autoComplete="off"
           />
           <button type="submit">
-            <FaSearch />
+            <FaSearch title="Search Icon" />
           </button>
         </form>
       </nav>

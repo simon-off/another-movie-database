@@ -10,7 +10,8 @@
 }
 
 .scroll-btn {
-  background-color: rgba(0 0 0 / 0.6);
+  background-color: transparent;
+  background-image: linear-gradient(rgba(0 0 0 / 0) -50%, rgba(0 0 0 / 0.6), rgba(0 0 0 / 0) 150%);
 
   border: var(--border);
   position: absolute;
@@ -44,6 +45,10 @@
     right: 0;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
 
 .movie-list {
@@ -72,5 +77,9 @@
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-auto-columns: calc(90% / var(--columns) - var(--gap) + (var(--gap) / var(--columns)));
   }
 }

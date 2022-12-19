@@ -10,6 +10,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.scss";
+import SearchResults from "./pages/SearchResults";
 // import { useState } from "react";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Movie recentlyViewed={recentlyViewed} setRecentlyViewed={setRecentlyViewed} />
             }
           />
+          <Route path="/search/:query" element={<SearchResults />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

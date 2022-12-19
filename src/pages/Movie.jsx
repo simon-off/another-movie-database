@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import "./Movie.scss";
 import drawStars from "../helpers/drawStars";
 import MovieListSection from "../components/MovieListSection";
+import fallbackPoster from "../assets/img/poster-fallback.png";
 
 const dummyURL = "/dummy-movie.json";
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -51,18 +52,27 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
     return (
       <>
         <section className="movie-section">
-          <div className="movie-backdrop-container">
-            <img
-              className={backdropLoaded ? "loaded" : ""}
-              onLoad={() => {
-                setBackdropLoaded(true);
-              }}
-              src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
-              alt={movie.title}
-            />
+          <div className={`movie-backdrop-container ${movie.backdrop_path ? "loaded" : ""}`}>
+            {movie.backdrop_path ? (
+              <img
+                className={backdropLoaded ? "loaded" : ""}
+                onLoad={() => {
+                  setBackdropLoaded(true);
+                }}
+                src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
+                alt={movie.title}
+              />
+            ) : null}
           </div>
           <div className="movie-section-content">
-            <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+            {movie.poster_path ? (
+              <img
+                src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                alt={`Movie poster for: ${movie.title}`}
+              />
+            ) : (
+              <img src={fallbackPoster} alt={movie.title} />
+            )}
             <div className="movie-info">
               <h2>{movie.title || null}</h2>
               <div className="movie-info__stars">

@@ -3,7 +3,7 @@ import fallbackPoster from "../assets/img/poster-fallback.png";
 
 function QuickSearchResult({ movie }) {
   return (
-    <Link to={`/movie/${movie.id}`}>
+    <Link to={`/movie/${movie.id}`} title={movie.title}>
       <article className="quick-search__result">
         <div className="img-container">
           {movie.poster_path ? (

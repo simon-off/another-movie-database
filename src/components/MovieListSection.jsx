@@ -44,7 +44,9 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
   };
 
   window.addEventListener("resize", () => {
-    setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
+    if (movieListRef.current) {
+      setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
+    }
   });
 
   // function to check if at edge of scroll box

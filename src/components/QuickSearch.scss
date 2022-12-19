@@ -2,7 +2,7 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  bottom: 1px;
+  bottom: -1px;
   left: 50%;
   transform: translate(-50%, 100%);
   width: 100%;
@@ -29,10 +29,10 @@
     gap: calc(var(--prem) / 2);
     border-bottom: var(--border);
     padding: calc(var(--prem) / 2);
-
-    &:first-of-type {
-      border-top: var(--border);
-    }
+    // &:first-child {
+    //   border-top: var(--border);
+    //   background-color: red;
+    // }
 
     .img-container {
       margin-block: auto;

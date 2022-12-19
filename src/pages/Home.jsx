@@ -6,28 +6,37 @@ import "./Home.scss";
 const dummyURL = "dummy-movies.json";
 const apiKey = import.meta.env.VITE_API_KEY;
 
-const topRatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
 const popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+const upcomingURL = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`;
+const topRatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
 
 function Home({ recentlyViewed, setRecentlyViewed }) {
-  const topRated = useFetch(topRatedURL);
   const popular = useFetch(popularURL);
+  const upcoming = useFetch(upcomingURL);
+  const topRated = useFetch(topRatedURL);
 
   return (
     <>
       <MovieListSection
-        movies={topRated.data}
-        error={topRated.error}
-        loading={topRated.error}
-        title="Top rated"
-        sectionId="top"
-      />
-      <MovieListSection
         movies={popular.data}
         error={popular.error}
-        loading={popular.error}
+        loading={popular.loading}
         title="Popular right now"
         sectionId="popular"
+      />
+      <MovieListSection
+        movies={upcoming.data}
+        error={upcoming.error}
+        loading={upcoming.loading}
+        title="Upcoming"
+        sectionId="upcoming"
+      />
+      <MovieListSection
+        movies={topRated.data}
+        error={topRated.error}
+        loading={topRated.loading}
+        title="Top rated"
+        sectionId="top"
       />
       {recentlyViewed.length > 0 ? (
         <>
