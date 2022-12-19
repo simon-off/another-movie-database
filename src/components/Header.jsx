@@ -40,8 +40,8 @@ function Navbar() {
             aria-label="Search AMDb"
             autoComplete="off"
           />
-          <button type="submit">
-            <FaSearch title="Search Icon" />
+          <button type="submit" title="Submit search" id="search-btn">
+            <FaSearch aria-labelledby="search-btn" />
           </button>
         </form>
       </nav>
