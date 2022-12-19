@@ -40,7 +40,7 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
     );
 
     const targetCard = document.getElementById(sectionId + targetScrollPosition);
-    targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    targetCard.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
   };
 
   window.addEventListener("resize", () => {
@@ -53,9 +53,11 @@ function MovieListSection({ movies, error, loading, sectionId, title }) {
   const handleScrollEvent = (e) => {
     setColumns(window.getComputedStyle(movieListRef.current).getPropertyValue("--columns"));
 
+    const scrollLeftMax = e.target.scrollWidth - e.target.clientWidth;
+
     if (e.target.scrollLeft < 50) {
       setAtSide("left");
-    } else if (e.target.scrollLeft > e.target.scrollLeftMax - 50) {
+    } else if (e.target.scrollLeft > scrollLeftMax - 50) {
       setAtSide("right");
     } else {
       setAtSide("middle");
