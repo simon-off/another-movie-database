@@ -15,10 +15,12 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 function Movie({ recentlyViewed, setRecentlyViewed }) {
   const { id } = useParams();
-  const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+  const apiMovieURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+  const apiRelatedURL = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`;
   const [backdropLoaded, setBackdropLoaded] = useState(false);
 
-  const { data: movie, error, loading } = useFetch(apiURL);
+  const relatedMovies = useFetch(apiRelatedURL);
+  const { data: movie, error, loading } = useFetch(apiMovieURL);
 
   useEffect(() => {
     if (movie) {
@@ -93,6 +95,13 @@ function Movie({ recentlyViewed, setRecentlyViewed }) {
             </div>
           </div>
         </section>
+        <MovieListSection
+          movies={relatedMovies.data}
+          error={relatedMovies.error}
+          loading={relatedMovies.loading}
+          title="More like this"
+          sectionId="related"
+        />
         {recentlyViewed.length > 0 ? (
           <>
             <MovieListSection
