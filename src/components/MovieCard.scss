@@ -4,7 +4,6 @@
 
   transition: var(--time-fast);
   scroll-snap-align: start;
-  // text-align: center;
   overflow: hidden;
   border-radius: var(--border-radius);
   position: relative;
@@ -49,7 +48,6 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--prem) / 1.5);
-    // align-items: center;
     p {
       display: -webkit-box;
       -webkit-box-orient: vertical;

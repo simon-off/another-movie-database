@@ -1,7 +1,7 @@
 function ErrorPage() {
   return (
     <section>
-      <h1>Oops</h1>
+      <h1>Seems like you got lost! There's nothing here...</h1>
     </section>
   );
 }

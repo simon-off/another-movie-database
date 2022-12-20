@@ -14,7 +14,7 @@ function Footer() {
           but is not endorsed or certified by TMDB.
         </p>
         <span className="disclaimer">
-          made by: <a href="https://github.com/simon-off">simonoff</a>
+          Made by: <a href="https://github.com/simon-off">simonoff</a>
         </span>
       </div>
     </footer>

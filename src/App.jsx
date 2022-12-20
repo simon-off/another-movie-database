@@ -7,11 +7,10 @@ import ErrorPage from "./pages/ErrorPage";
 
 // Components
 import useLocalStorage from "./hooks/useLocalStorage";
+import SearchResults from "./pages/SearchResults";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.scss";
-import SearchResults from "./pages/SearchResults";
-// import { useState } from "react";
 
 function App() {
   const [recentlyViewed, setRecentlyViewed] = useLocalStorage([], "recent");
