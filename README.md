@@ -2,17 +2,19 @@
 
 Simple movie app made with [React.js](https://reactjs.org/). Part of course submission for JSBE at _ECUtbildning_ 2022.
 
+Preview on Netlify: [anothermoviedatabase.netlify.app](https://anothermoviedatabase.netlify.app/)
+
 Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api).
 
 ---
 
-## 💿 Running the app:
+## 💿 Running the app locally:
 
 Start with cloning this repo on your local machine:
 
 ```sh
-$ git clone https://github.com/ORG/PROJECT.git
-$ cd PROJECT
+$ git clone https://github.com/simon-off/another-movie-database.git
+$ cd another-movie-database
 ```
 
 Then run this to install all necessary dependencies:
