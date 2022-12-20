@@ -11,8 +11,8 @@ Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/do
 Start with cloning this repo on your local machine:
 
 ```sh
-$ git clone https://github.com/ORG/PROJECT.git
-$ cd PROJECT
+$ git clone https://github.com/simon-off/another-movie-database.git
+$ cd another-movie-database
 ```
 
 Then run this to install all necessary dependencies:
