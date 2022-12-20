@@ -2,11 +2,13 @@
 
 Simple movie app made with [React.js](https://reactjs.org/). Part of course submission for JSBE at _ECUtbildning_ 2022.
 
+Preview on Netlify: [anothermoviedatabase.netlify.app](https://anothermoviedatabase.netlify.app/)
+
 Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api).
 
 ---
 
-## 💿 Running the app:
+## 💿 Running the app locally:
 
 Start with cloning this repo on your local machine:
 
