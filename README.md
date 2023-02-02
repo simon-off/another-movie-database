@@ -4,7 +4,7 @@ Movie database app made with [React.js](https://reactjs.org/). Part of course su
 
 Preview on Netlify: [anothermoviedatabase.netlify.app](https://anothermoviedatabase.netlify.app/)
 
-Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api).
+Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
 
 ---
 
