@@ -2,7 +2,7 @@
 
 Movie database app made with [React.js](https://reactjs.org/). Part of course submission for JSBE at _ECUtbildning_ 2022.
 
-Preview on Netlify: [anothermoviedatabase.netlify.app](https://anothermoviedatabase.netlify.app/)
+Check it out: [AMDb | Another Movie Database](https://amdb.simonoff.se/)
 
 Using data from [themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
 
